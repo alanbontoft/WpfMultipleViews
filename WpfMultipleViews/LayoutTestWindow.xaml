@@ -1,0 +1,78 @@
+﻿<Window x:Class="WpfMultipleViews.LayoutTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfMultipleViews"
+        mc:Ignorable="d"
+        Title="LayoutTestWindow" Height="1000" Width="1000"
+        >
+
+    <Border Padding="10" Background="Gray">
+
+        <Grid Background="White">
+            <!-- Grid Definitions-->
+            <Grid.ColumnDefinitions>
+                <!-- Width = Auto causes column width to be only as wide as widest control -->
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+
+            <!-- Canvas Layout -->
+            <Canvas Grid.Column="0" Grid.Row="0" Background="Yellow" Width="200" Height="200" HorizontalAlignment="Center" >
+                <!-- Canvas uses coordinates for control placement 
+                     Note : Left and Top are Attached properties -->
+                <Button Content="Test" Canvas.Left="20" Canvas.Top="20"/>
+            </Canvas>
+
+            <!-- Stack Panel Layout -->
+            <!-- Default Orientation is Vertical -->
+            <StackPanel Grid.Column="1" Grid.Row="0" Margin="10,10,10,0" Height="50" VerticalAlignment="Top" Orientation="Horizontal">
+                <Button Content="Test 1" Margin="5" Width="75"/>
+                <Button Content="Test 2" Margin="5" Width="75"/>
+                <Button Content="Test 3" Margin="5" Width="75"/>
+            </StackPanel>
+
+            <Button Content="Lone Button" Height="50" Width="100"  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" />
+
+            <Border Grid.Row="2" Grid.Column="0" BorderBrush="Black" BorderThickness="2">
+                <Grid ShowGridLines="True" >
+                    <!-- Grid Definitions-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <GridSplitter Width="2" Background="Red" Grid.RowSpan="3" ShowsPreview="True"/>
+                    <GridSplitter DragIncrement="10" Grid.ColumnSpan="3" Height="2" Background="Blue"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
+
+                </Grid>
+            </Border>
+
+            <DockPanel Grid.Column="1" Grid.Row="2" LastChildFill="False">
+                <Button Content="Left" DockPanel.Dock="Left"  />
+                <Button Content="Top" DockPanel.Dock="Top"  />
+                <Button Content="Bottom" DockPanel.Dock="Bottom"  />
+                <Button Content="Right" DockPanel.Dock="Right"  />
+                <!-- <Canvas /> -->
+            </DockPanel>
+        
+        </Grid>
+
+    </Border>
+
+</Window>
